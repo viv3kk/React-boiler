@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require("webpack");
 
 var DIST_DIR = path.resolve(__dirname,"dist")
 var SRC_DIR = path.resolve(__dirname,"src")
@@ -7,9 +8,13 @@ var config = {
 	entry : SRC_DIR + "/app/index.js",
 	output: {
 		path: DIST_DIR+ "/app",
-		filename: "bundle.js",
+		filename: "bundle.min.js",
 		publicPath: "/app/"
 	},
+	plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  ],
 	module: {
 		loaders: [
 			{

@@ -1,7 +1,7 @@
 import React from "react";
 import { render,ReactDOM } from "react-dom";
-import Chart from 'chart.js';
-
+import Moment from 'moment';
+import { RingLoader,BarLoader,ClipLoader } from 'react-spinners';
 
 
 class App extends React.Component{
@@ -16,29 +16,39 @@ class App extends React.Component{
 
 	}
 
+	myFunction() {
+		//console.log('here resize');
+		console.log("Total li's --->",this.menu.childNodes.length)
+	}
+
 	focus() {
 		// Explicitly focus the text input using the raw DOM API
 		this.textInput.focus();
 	}
 
 	componentDidMount(){
-		console.log(this.menu.childNodes.length)
+		console.log("Total li's --->",this.menu.childNodes.length)
 		this.setState({
 			total_li : this.menu.childNodes.length
-		})		
+		})
+
+		window.addEventListener("resize", this.myFunction);
 	}
 
 
 	render(){
 
-		this.setState({
-			total_li : this.menu.childNodes.length
-		})
-		//console.log(this.menu)
+
+		console.log("refs menu now-->",this.menu)
 
 		return (
 			<div>
-
+				<div className='sweet-loading'>
+					<BarLoader
+						color={'#123abc'}
+						loading={true}
+					/>
+				</div>
 				<input
 		          type="text"
 		          ref={(inpt) => { this.textInput = inpt; }} />
@@ -49,10 +59,15 @@ class App extends React.Component{
 		          onClick={this.focus}
 		        />
 
-				<ul id="menu" ref={el => this.menu = el}>
+					<ul id="menu" ref={el => this.menu = el} >
 				  <li>Coffee</li>
 				  <li>Tea</li>
 				  <li>Milk</li>
+					<li>Milk</li>
+					<li>Milk</li>
+					<li>Milk</li>
+					<li>Milk</li>
+
 				  <li>{this.state.total_li}</li>
 				</ul>
 			</div>
