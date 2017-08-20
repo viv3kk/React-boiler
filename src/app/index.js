@@ -1,13 +1,8 @@
 import React from "react";
 import { render,ReactDOM } from "react-dom";
-<<<<<<< HEAD
+
 import Moment from 'moment';
 import { RingLoader,BarLoader,ClipLoader } from 'react-spinners';
-=======
-import Chart from 'chart.js';
-
->>>>>>> 457f9e09d39a295a27967c16f92799b048b1b6da
-
 
 class App extends React.Component{
 	constructor(props) {
